@@ -1,0 +1,18 @@
+{
+  "name": "build-bot",
+  "version": "1.0.0",
+  "description": "build own instagram bot and automate your account",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^3.0.4",
+    "exec-php": "^0.0.4",
+    "shelljs": "^0.8.3",
+    "total.js": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "solo.roman@gmail.com (Roman Solovev)",
+  "license": "ISC"
+}

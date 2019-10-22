@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Instagram</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="css/mat.css">
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="js/mat.js"></script>
+    <script src="js/timer.js"></script>
+
+    <!-- normal script imports etc  -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+            
+</head>
+<body>
+        <nav>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <div class="nav-wrapper blue darken-3">
+                    <ul class="right">
+                      <li><a href="#">Купить Proxy</a></li>
+                      <li><a class="waves-effect modal-trigger" href="#bugreport">Сообщить о баге | Пожелания</a></li>
+                    </ul>
+                  </div>
+        </nav>
+
+        <ul id="slide-out" class="sidenav">
+                <li><div class="user-view">
+                        <div class="background">
+                                <img style="width: 100%; height: auto;"  src="img/background.jpg">
+                            </div>
+                  <a href="#user"><img class="circle" src="img/instagram_logo.png"></a>
+                  <a href="#name"><span class="white-text name">BUILD-BOT Instagram</span></a>
+                  <a href="#email"><span class="white-text email">с начала разработки прошло:</span></a>
+                  <a href="#email"><span class="white-text email"><b id="timer"></b></span></a>
+                </div></li>
+                <li><a class="subheader">Программа</a></li>
+                <li><a id="add_account" class="waves-effect"><i class="material-icons">person_add</i>Добавить Аккаунт</a></li>
+                <li><a class="waves-effect modal-trigger" href="#settings"><i class="material-icons">settings</i>Настройки</a></li>
+                <li><a class="waves-effect modal-trigger" href="#help"><i class="material-icons">help_outline</i>Помощь</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader"><i class="material-icons">favorite</i>Донат</a></li>
+                <li><a class="waves-effect modal-trigger" href="#donate">Дать на чашечку горячего чая :)</a></li>
+        </ul>
+
+          <!-- Modal Structure -->
+          <div id="bugreport" class="modal">
+                <div class="modal-content">
+                    <h5>Сообщить о баге | Пожелания и рекомендации</h5>
+                <div class="divider"></div>
+                <h6>Пожелания и рекомендации</h6>
+                <p>Расскажите нам, что вы бы хотели видеть в следующем обновлении? <br>
+                (Функционал / Интерфейс / Цена)<br>
+                Что вам понравилось или нет? <br>
+                Возможно, вы хотите стать членом нашей команды?</p>
+                <div class="divider"></div>
+                <h6>Cообщить о баге</h6>
+                    <p> 1)Изложите суть бага <br> 
+                        2)Последовательность действий для его достижения <br>
+                        3)Если есть ошибка, приложите полный текст ошибки</p>
+                    <textarea id="report" style="height: 20%;" cols="30" rows="10" placeholder="Минимум 60 символов!"></textarea>
+                    <div class="divider"></div>
+                    <small>Мы рассмотрим баг или рекомендацию и в скором времени выпустим обновление!</small>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+                    <a href="#!" id="send_report" class="modal-close waves-effect waves-green btn-flat">Отправить</a>
+                </div>
+        </div>
+
+
+            <div id="help" class="modal">
+                <div class="modal-content">
+                    <h5>Как работать с программой?</h5>
+                    <div class="divider"></div>
+
+                    <p>В программировании бота есть несколько типов блоков:<br>
+                        1) Event - блок предназначенный для монитогринга событий с вашим аккаунтом, если один из Event'ов случается то блок передает необходимые данные и контроль над вашим аккаунтом другому блоку.<br>
+                        &nbsp;&nbsp;1.1) Push-уведомления - уведомления как на смартфоне, о каких либо действиях. Пример: "Вася Пупкин оценил запись", "Вася Пупкин прокомментировал вашу запись", "Вася Пупкин отправил вам сообщение" и т.д.<br>
+                        &nbsp;&nbsp;1.2) Таймер или запланированная дата и время. Пример: когда истекает таймер или приходит определенное время, блок запускает выстроенную вами логическую цепочку. <br>
+                        &nbsp;&nbsp;1.3) API, вы можете связать любой сервис или социальную сеть, которая предоставляет свои API и вызвать исполнение вашей логической цепочки. (Осуществляется через личный кабинет на сайте...). Пример: Пользователь VK пишет в чат-бот (сообщения группы) свой профиль инстаграм, BUILD-BOT получает имя аккаунта и может: подписаться на него, проверить подписку на себя, поставить лайки и т.д. <br>
+                        2) Logic - блок выполнающий логические функции (сравнение двух элементов или сравнение элемента из набора (массива) с другим элементом). <br>
+                        3) Reply - блок имеющий только одну задачу, выполнять какое либо действие (поставить лайк, подписаться и т.д.). <br>
+                        4) Reply API - блок который выполнит вашу команду (занесение данных в таблицы MySQL, или вызов PHP скрипта (www.mysite.com/script.php?constant=1&string=тест))</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+                </div>
+            </div>
+
+
+            <div id="donate" class="modal">
+                    <div class="modal-content">
+                    <h4>Спасибо за поддержку!</h4>
+                    <p>Я очень старался чтобы вам программа была полезна и удобна, наверняка до сих пор сижу и выпиливаю баги или добавляю фичи.<br>
+                        Многие разработчики просят донат на кофе, но я его не люблю, поэтому буду просить на чай))<br>
+                        Мне очень важна ваша поддержка... Так я поимаю, что старался не зря.<br>
+                        <b>Я очень не хочу заканчивать работу над этим софтом и не хочу портить его рекламой.</b> <br>
+                        Если вы хотите обновлений или определенного функционала напишите мне в соц.сетях. <br>
+                        VK - vk.com/solo.roman <br>
+                        Telegram - soloroman <br>
+                    </p>
+                    <div class="divider"></div>
+                    <h4>Куда переводить?</h4>
+                    <p>Можно перевести:
+                        <ul>
+                            <li>1) Сообщения вк (vk.com/solo.roman)</li>
+                            <li>2) СбербанкОнлайн ()</li>
+                            <li>3) ТинькоффБанк ()</li>
+                        </ul>
+                    </p>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+                    </div>
+                </div>
+
+            <!-- Modal Structure -->
+            <div id="settings" class="modal">
+                    <div class="modal-content">
+                    <h4>Настройки</h4>
+                        <div class="col s12">
+                            <div class="row">
+                                    <div class="col s6">
+                                        <p class="range-field">
+                                            <label id="label_time_update" for="time_update">Автообновление профилей</label>
+                                            <input label_id="label_time_update" onchange="range_num('time_update')" type="range" id="time_update" min="5" max="60" value="5"/>
+                                        </p>
+                                    </div>
+                                    <div class="col s6">
+                                            <p class="range-field">
+                                                <label id="label_time_sleep" for="time_sleep">Время вызова следующего профиля</label>
+                                                <input label_id="label_time_sleep" onchange="range_num('time_sleep')" type="range" id="time_sleep" min="5" max="60" value="20"/>
+                                            </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Закрыть</a>
+                    </div>
+                </div>
+
+<div id="row" class="row"></div>
+     
+    <script>
+
+        var report = document.getElementById("report");
+        var send_report = document.getElementById("send_report");
+
+        send_report.addEventListener("click", function(){
+            if(report.value == ""){
+                alert("Текстовое поле пустое!");
+            }else if(report.value.length < 60){
+                alert("В текстовом поле менее 60 символов!");
+            }else{
+
+            }
+        });
+
+        function isNumeric(val) {
+            return !isNaN(parseFloat(val)) && isFinite(val);
+        }
+
+        function range_num(target){
+            var target = document.getElementById(target);
+            var label = target.getAttribute("label_id");
+            label = document.getElementById(label);
+            var buf = "a";
+            if(isNumeric(buf) == false){
+                buf = label.innerHTML;
+            }
+            if(target.value !== label.innerHTML){
+                label.innerHTML = target.value;
+            }
+            setTimeout(function() {
+                label.innerHTML = buf;
+            },500);
+        }
+
+        M.AutoInit();
+        /*
+        var cardid = document.getElementById("1");
+        var image = cardid.childNodes[1].childNodes[1].childNodes[1];
+        var full_name = cardid.childNodes[1].childNodes[1].childNodes[3].childNodes[0];
+        var posts = cardid.childNodes[1].childNodes[1].childNodes[3].childNodes[2];
+        var followers = cardid.childNodes[1].childNodes[1].childNodes[3].childNodes[3];
+        var followings = cardid.childNodes[1].childNodes[1].childNodes[3].childNodes[4];
+        var bio = cardid.childNodes[1].childNodes[3].childNodes[1];
+        var manage_btn = cardid.childNodes[1].childNodes[5].childNodes[1];
+        var delete_btn = cardid.childNodes[1].childNodes[5].childNodes[3];
+        */
+
+        const fs = require('fs');
+        const path = require('path');
+        const cache = __dirname+"/cache/";
+        var bufer;
+        let i = 0;
+
+
+        function deleteAcc(username){
+            ipcRenderer.send("deleteAcc", username);
+            location.reload();
+        }
+
+        function createCard(username){
+            var json = JSON.parse(fs.readFileSync(cache + username + ".json", 'utf8'));
+            var row = document.getElementById("row");
+            var deleteA = "deleteAcc('"+ json.user.username +"');";
+            var card = '<div id="'+ json.user.username +'" class="col s12 m6">'+
+            '<div style = "border-radius: 4%;" class="card z-depth-3">' +
+                '<div class="card-image">' +
+                    '<img class="col s4" style="width:120px; border-radius: 50%;" src="cache/'+ json.user.username +'.jpg">' +
+                        '<div class="row col s8"><h5>'+ json.user.full_name +'</h5>' +
+                             '<b class="col s4">'+ json.user.media_count +'</b><b class="col s4">'+ json.user.follower_count +'</b><b class="col s4">'+ json.user.following_count +'</b>' +
+                             '<small class="col s4">Постов</small><small class="col s4">Подписчиков</small><small class="col s4">Подписок</small>' +
+                        '</div>' +
+                '</div>' +
+            '<div class="card-content row">' +
+                '<p class="col s12">'+ json.user.biography +'</p><br>' +
+                '<p class="col s12">' + json.user.external_url + '</p>' +
+            '</div>' +
+            '<div class="card-action">' +
+                '<button onclick="callSchemeEditor();" class="btn-small waves-effect waves-light blue">Управление</button> &nbsp' +
+                '<button class="btn-small waves-effect waves-light green">Запуск</button> &nbsp' +
+                '<button onclick ="'+ deleteA +'" class="btn-small waves-effect waves-light red">Удалить</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+            $(row).append(card);
+        }
+        
+
+        function checkUndefined(bufer, files){
+            if(typeof files[i+1] !== "undefined"){
+                if(bufer == path.parse(files[i+1]).name){
+                    return(bufer);
+                }
+            }
+        }
+
+        fs.readdir(cache, (err, files) => {
+            for (i = 0; i < files.length; i++) {
+                if (path.parse(files[i]).ext == ".json" || path.parse(files[i]).ext == ".jpg") {
+                    if(files[i] !== "config.json"){
+                        if(path.parse(files[i]).ext == ".jpg"){
+                            bufer = path.parse(files[i]).name
+                            createCard(checkUndefined(bufer, files));
+                        }
+                    }
+                }
+            }
+        });
+        
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        let add_account = document.getElementById("add_account");
+        add_account.addEventListener("click", function () {
+            ipcRenderer.send("callAddWindow");
+        });
+
+        function callSchemeEditor() {
+            ipcRenderer.send("callSchemeWindow");
+        }
+    </script>
+</body>
+</html>

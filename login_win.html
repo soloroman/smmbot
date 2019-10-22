@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Instagram</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="css/mat.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="js/mat.js"></script>
+        <!-- Insert this line above script imports  -->
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+        <!-- normal script imports etc  -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    
+        <!-- Insert this line after script imports -->
+        <script>if (window.module) module = window.module;</script>
+            
+</head>
+<body>
+
+    <div class="section" id="index-banner">
+      <div class="container">
+        <div class="row center">
+            <div id="logo" class="center"><img style="height: 150px; width: 150px;" src="img/instagram_logo.png" alt="Instagram"></div>
+            <div id="loader"></div>
+            <div class="input-field">
+                <input id="username" type="text" class="validate">
+                <label for="username">Логин</label>
+              </div>
+            <div class="input-field">
+              <input id="password" type="text" class="validate">
+              <label for="password">Пароль</label>
+            </div>
+          </div>
+        <div class="row center">
+          <button id="next" class="btn-large waves-effect waves-light blue">Авторизация</button>
+        </div>
+      </div>
+    </div>
+
+  <footer class="page-footer transparent">
+        <div class="footer-copyright blue">
+          <div class="container">
+          Создал <a class="grey-text text-darken-3" href="https://vk.com/solo.roman">Roman Solovev</a>
+          </div>
+        </div>
+      </footer>
+      <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        document.getElementById("next").addEventListener('click', submitForm);
+
+        function submitForm(e){
+          
+          const circle = '<div style="height: 150px; width: 150px;" class="preloader-wrapper big active">'+
+              '<div class="spinner-layer spinner-blue-only">'+
+                '<div class="circle-clipper left">'+
+                  '<div class="circle"></div>'+
+                '</div><div class="gap-patch">'+
+                  '<div class="circle"></div>'+
+                '</div><div class="circle-clipper right">'+
+                  '<div class="circle"></div>'+
+                '</div>'+
+              '</div>'+
+            '</div>';
+
+            var logo = document.getElementById("logo");
+            logo.remove();
+
+            var loader = document.getElementById("loader");
+            $(loader).append(circle);
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username == "" || password == "") {
+                alert("Отсутствуют данные для входа!");
+            }else{
+                ipcRenderer.send('account:add', username, password);
+            }
+        }
+
+
+    </script>
+</body>
+</html>
