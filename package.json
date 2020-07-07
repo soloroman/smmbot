@@ -4,7 +4,7 @@
   "description": "build own instagram bot and automate your account",
   "main": "main.js",
   "dependencies": {
-    "electron": "^3.0.4",
+    "electron": "^9.1.0",
     "exec-php": "^0.0.4",
     "shelljs": "^0.8.3",
     "total.js": "^3.0.0"
